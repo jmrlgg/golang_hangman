@@ -1,81 +1,71 @@
 package main
 
 import (
-	"bytes"
 	"fmt"
 	"strings"
 )
 
 var (
-	tries int
-
 	words         string
 	wordCharSlice []string
-	wordNumSlice  []string
-	exists        bool
+	wordState     []string
+	blankWord     []string
+	letter        string
+	guesses       int
+	inputChoice   string
+	gameState     bool
 )
 
-func newGame() {
+func newGame(gameState bool) {
+	if gameState == true {
 
-	fmt.Println("Random word choice in process..")
-	// words = []string{"batman", "holla", "giraffe", "superman"}
-	words = "batman"
+		fmt.Println("Random word choice in process..")
+		// words = []string{"batman", "holla", "giraffe", "superman"}
+		words = "batman"
+		wordCharSlice = strings.Split(words, "")
+		for i := 0; len(wordCharSlice) > i; i++ {
 
-	// wordCharSlice := make([]string, int(len(words)))
-	// wordNumSlice := make([]string, int(len(words)))
-	wordCharSlice = strings.Split(words, "")
-	var buffer bytes.Buffer
-
-	for i := 0; len(wordCharSlice) > i; i++ {
-		buffer.WriteString("_ ")
-	}
-
-	//get user input
-	var letter string
-	fmt.Scanf("%s\n", &letter)
-	if letter == "" {
-		fmt.Println("error")
-		return
-	}
-
-	inArray(letter, wordCharSlice)
-
-}
-
-func inArray(val string, array []string) (exists bool, index int) {
-	exists = false
-	index = -1
-
-	for i, v := range array {
-		if val == v {
-			index = i
-			exists = true
-			fmt.Println("yes")
-			return
+			blankWord = append(blankWord, "_")
+			// buffer.WriteString("_ ")
 		}
+		fmt.Println(blankWord)
+		fmt.Println("Please choose a letter")
+		guesses = 1
+		fmt.Scanf("%s\n", &letter)
+		gameState = false
+		guess(blankWord, wordCharSlice, letter, guesses)
 	}
-	fmt.Println("no")
-	return
+
+	letter = ""
+	guess(blankWord, wordCharSlice, letter, guesses)
 }
 
-// func choice(wordChoice string) {
+func guess(blankWord []string, wordCharSlice []string, letter string, guesses int) {
+	fmt.Println("b4 guess")
 
-// 	if tries <= 4 {
-// 		fmt.Print("Please choose a letter: ")
-// 		reader := bufio.NewReader(os.Stdin)
-// 		text, _ := reader.ReadString('\n')
-// 		text = strings.Replace(text, "\n", "", -1)
+	fmt.Println(guesses)
+	for guesses < 10 {
+		fmt.Println("a guess")
+		if letter == "" {
+			fmt.Println("Please choose a lettera")
+			fmt.Scanf("%s\n", &letter)
 
-// 		if strings.Contains(wordChoice, text) {
-// 			fmt.Println("yes")
-// 			fmt.Println(text)
-// 		} else {
-// 			fmt.Println("no")
-// 			fmt.Println(text)
+		}
+		var i = 0
+		for _, l := range wordCharSlice {
+			if letter == l {
+				blankWord[i] = l
 
-// 		}
-// 	}
-// }
+			}
+			i++
+
+		}
+		fmt.Println(blankWord)
+
+		gameState = false
+		newGame(gameState)
+	}
+}
 
 func main() {
 
@@ -83,27 +73,12 @@ func main() {
 	fmt.Println("Type 'start' to begin.")
 
 	//input of user
-	var inputChoice string
 	fmt.Scanf("%s\n", &inputChoice)
 
 	//check if true
 	if inputChoice == "start" {
-		newGame()
+		gameState := true
+		newGame(gameState)
 	}
-	// fmt.Print("Enter choice: ")
-	// text, _ := reader.ReadString('\n')
-	// text = strings.Replace(text, "\n", "", -1)
-	// choice(text)
 
 }
-
-// func f(x int) {
-
-// 	fmt.Println(x)
-// }
-
-// func main() {
-
-// 	x := 5
-// 	f(x)
-// }
