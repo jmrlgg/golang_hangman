@@ -1,4 +1,0 @@
-package hang
-
-import "fmt"
-
