@@ -1,84 +1,98 @@
 package main
 
 import (
+	"bufio"
+	"flag"
 	"fmt"
+	"os"
 	"strings"
 )
 
-var (
-	words         string
-	wordCharSlice []string
-	wordState     []string
-	blankWord     []string
-	letter        string
-	guesses       int
-	inputChoice   string
-	gameState     bool
-)
+const maxGuesses = 10
 
-func newGame(gameState bool) {
-	if gameState == true {
-
-		fmt.Println("Random word choice in process..")
-		// words = []string{"batman", "holla", "giraffe", "superman"}
-		words = "batman"
-		wordCharSlice = strings.Split(words, "")
-		for i := 0; len(wordCharSlice) > i; i++ {
-
-			blankWord = append(blankWord, "_")
-			// buffer.WriteString("_ ")
-		}
-		fmt.Println(blankWord)
-		fmt.Println("Please choose a letter")
-		guesses = 1
-		fmt.Scanf("%s\n", &letter)
-		gameState = false
-		guess(blankWord, wordCharSlice, letter, guesses)
-	}
-
-	letter = ""
-	guess(blankWord, wordCharSlice, letter, guesses)
+type Hangman struct {
+	WordState, blankWord, wordCharSlice []string
+	maxGuesses, numOfTries              int
+	word, gameStatus, letter            string
+	verbose                             bool
 }
 
-func guess(blankWord []string, wordCharSlice []string, letter string, guesses int) {
-	fmt.Println("b4 guess")
+func getWord() string {
+	word := "batman"
+	return word
+}
 
-	fmt.Println(guesses)
-	for guesses < 10 {
-		fmt.Println("a guess")
-		if letter == "" {
-			fmt.Println("Please choose a lettera")
-			fmt.Scanf("%s\n", &letter)
-
+func (h *Hangman) isMatch(letter string) bool {
+	if strings.Contains(h.word, h.letter) {
+		if h.verbose {
+			fmt.Println("True")
 		}
-		var i = 0
-		for _, l := range wordCharSlice {
-			if letter == l {
-				blankWord[i] = l
+		return true
+	} else {
+		if h.verbose {
+			fmt.Println("false")
+		}
+		return false
+	}
+}
 
+func (h *Hangman) getGuess() string {
+	if h.numOfTries < 10 {
+		fmt.Println(h.word)
+		for i := 0; len(h.wordCharSlice) > i; i++ {
+			h.blankWord = append(h.blankWord, "_ ")
+			// buffer.WriteString("_ ")
+		}
+		fmt.Println(h.blankWord)
+		fmt.Println("Please choose a letter")
+		reader := bufio.NewReader(os.Stdin)
+		letter, err := reader.ReadString('\n')
+		if err != nil {
+			fmt.Println("Sucks")
+		}
+		h.numOfTries++
+		return letter
+	}
+	fmt.Println("You have reached the limit of guesses!")
+	return h.letter
+
+}
+
+func (h *Hangman) updateWord(letter string) {
+
+	if h.letter == "" {
+
+	} else {
+		i := 0
+		for _, l := range h.wordCharSlice {
+			if h.letter == l {
+				h.blankWord[i] = l
+				fmt.Println(h.blankWord)
 			}
 			i++
-
 		}
-		fmt.Println(blankWord)
-
-		gameState = false
-		newGame(gameState)
+		return
 	}
 }
 
 func main() {
 
-	//to start game
-	fmt.Println("Type 'start' to begin.")
+	verbose := flag.Bool("v", false, "verbose mode for debugging purposes")
+	flag.Parse()
 
-	//input of user
-	fmt.Scanf("%s\n", &inputChoice)
+	game := Hangman{
+		word:       getWord(),
+		maxGuesses: maxGuesses,
+		verbose:    *verbose,
+	}
+	fmt.Println("Ready to start game. y/n")
 
-	//check if true
-	if inputChoice == "start" {
-		gameState := true
-		newGame(gameState)
+	letter := game.getGuess()
+
+	if game.isMatch(letter) {
+		fmt.Println("Rd")
+		game.updateWord(letter)
+		fmt.Println(letter)
 	}
 
 }
