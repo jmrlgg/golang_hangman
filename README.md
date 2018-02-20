@@ -3,7 +3,7 @@
 ## GOPHER in training
 
 [![GoDoc](https://godoc.org/github.com/jmrlgg/golang_hangman?status.svg)](https://godoc.org/github.com/jmrlgg/golang_hangman)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/jmrlgg/godiscord/issues) [![Fragmedia Discord](https://img.shields.io/badge/FragMedia-Discord-ff69b4.svg)](https://discord.me/fragmedia)  [![jmrlgg](https://img.shields.io/badge/twitter-jmrlgg-blue.svg)](https://twitter.com/jmrlgg) 
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/jmrlgg/godiscord/issues) [![Fragmedia Discord](https://img.shields.io/badge/FragMedia-Discord-ff69b4.svg)](https://discord.me/fragmedia)  [![jmrlgg](https://img.shields.io/badge/twitter-jMrLgg-blue.svg)](https://twitter.com/jmrlgg) 
 
 <!-- [![Beerpay](https://img.shields.io/beerpay/jmrlgg/godiscord.svg)](https://beerpay.io/jmrlgg/godiscord) -->
 
