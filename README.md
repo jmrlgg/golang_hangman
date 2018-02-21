@@ -43,9 +43,10 @@ Hangman bot with a twist.
 
 
 
+
 TODO
 - [x] loop through word 
 - [ ] response for a wrong guess
 - [ ] tries++ 
 - [ ] Migrate to Discord
-```
+
