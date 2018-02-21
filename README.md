@@ -24,7 +24,7 @@ Hangman bot with a twist.
 
 <!-- TOC -->
 
-- [Twitter bot bootstrap](#twitter-bot-bootstrap)
+- [Hangman](#golang_hangman)
   - [0](#w)
   - [0](#s)
   - [0](#s)
