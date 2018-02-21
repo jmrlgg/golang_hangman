@@ -42,6 +42,7 @@ Hangman bot with a twist.
 </details>
 
 
+
 TODO
 - [x] loop through word 
 - [ ] response for a wrong guess
