@@ -18,6 +18,28 @@
 ```
 Hangman bot with a twist. 
 
+<details>
+  <summary>Click to expand TOC</summary>
+
+<!-- TOC -->
+
+- [Twitter bot bootstrap](#twitter-bot-bootstrap)
+  - [0](#w)
+  - [0](#s)
+  - [0](#s)
+  - [0](#n)
+  - [0](#s)
+  - [0](#p)
+  - [0](#n)
+  - [0](#d)
+  - [0](#h)
+  - [0](#l)
+  - [0(#l
+
+<!-- /TOC -->
+
+</details>
+
 
 TODO
 - [x] loop through word 
