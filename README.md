@@ -18,6 +18,7 @@
 ```
 Hangman bot with a twist. 
 
+
 <details>
   <summary>Click to expand TOC</summary>
 
