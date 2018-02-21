@@ -44,7 +44,7 @@ Hangman bot with a twist.
 
 
 
-TODO
+**TODO**
 - [x] loop through word 
 - [ ] response for a wrong guess
 - [ ] tries++ 
