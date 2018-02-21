@@ -35,7 +35,7 @@ Hangman bot with a twist.
   - [0](#d)
   - [0](#h)
   - [0](#l)
-  - [0(#l
+  - [0](#l)
 
 <!-- /TOC -->
 
